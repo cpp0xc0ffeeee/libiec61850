@@ -157,6 +157,13 @@ MmsServer_installReadAccessHandler(MmsServer self, MmsReadAccessHandler readAcce
 }
 
 void
+MmsServer_installReadAccessHandlerEx(MmsServer self, MmsReadAccessHandlerEx readAccessHandler, void* parameter)
+{
+    self->readAccessHandlerEx = readAccessHandler;
+    self->readAccessHandlerParameterEx = parameter;
+}
+
+void
 MmsServer_installWriteHandler(MmsServer self, MmsWriteVariableHandler writeHandler, void* parameter)
 {
     self->writeHandler = writeHandler;
@@ -305,6 +312,10 @@ mmsServer_getValue(MmsServer self, MmsDomain* domain, char* itemId, MmsServerCon
             value = MmsValue_newDataAccessError(accessError);
             MmsValue_setDeletable(value);
             goto exit_function;
+        }else{
+        	MmsReadAccessHandlerEx handler=self->readAccessHandlerParameterEx;
+        	if(handler != NULL)
+        		handler(self->readAccessHandlerParameterEx, domain, itemId, connection);
         }
     }
 

@@ -62,6 +62,9 @@ typedef MmsDataAccessError (*MmsWriteVariableHandler)(void* parameter,
 
 typedef void (*MmsConnectionHandler)(void* parameter,
 		MmsServerConnection connection, MmsServerEvent event);
+		
+typedef void (*MmsReadAccessHandlerEx) (void* parameter, MmsDomain* domain,
+        char* variableId, MmsServerConnection connection);		
 
 MmsServer
 MmsServer_create(IsoServer isoServer, MmsDevice* device);
@@ -75,6 +78,9 @@ MmsServer_installReadHandler(MmsServer self, MmsReadVariableHandler,
 
 void
 MmsServer_installReadAccessHandler(MmsServer self, MmsReadAccessHandler, void* parameter);
+
+void
+MmsServer_installReadAccessHandlerEx(MmsServer self, MmsReadAccessHandlerEx, void* parameter);
 
 void
 MmsServer_installWriteHandler(MmsServer self, MmsWriteVariableHandler,

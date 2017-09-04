@@ -165,6 +165,10 @@ struct sMmsServer {
     char* filestoreBasepath;
 #endif
 
+	//Ex
+	MmsReadAccessHandlerEx readAccessHandlerEx;
+    void* readAccessHandlerParameterEx;
+
 };
 
 struct sMmsServerConnection {
@@ -188,6 +192,7 @@ struct sMmsServerConnection {
     int32_t nextFrsmId;
     MmsFileReadStateMachine frsms[CONFIG_MMS_MAX_NUMBER_OF_OPEN_FILES_PER_CONNECTION];
 #endif
+
 };
 
 #if (MMS_OBTAIN_FILE_SERVICE == 1)

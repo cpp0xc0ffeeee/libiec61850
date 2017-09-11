@@ -313,7 +313,7 @@ mmsServer_getValue(MmsServer self, MmsDomain* domain, char* itemId, MmsServerCon
             MmsValue_setDeletable(value);
             goto exit_function;
         }else{
-        	MmsReadAccessHandlerEx handler=self->readAccessHandlerParameterEx;
+        	MmsReadAccessHandlerEx handler=self->readAccessHandlerEx;
         	if(handler != NULL)
         		handler(self->readAccessHandlerParameterEx, domain, itemId, connection);
         }

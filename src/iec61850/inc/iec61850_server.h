@@ -663,7 +663,7 @@ IedServer_updateUTCTimeAttributeValue(IedServer self, DataAttribute* dataAttribu
  * \param value the new UTC time value of the data attribute as a Timestamp
  */
 void
-IedServer_updateTimestampAttributeValue(IedServer self, DataAttribute* dataAttribute, Timestamp* timestamp);
+IedServer_updateTimestampAttributeValue(IedServer self, DataAttribute* dataAttribute, I6_Timestamp* timestamp);
 
 /**
  * \brief Update a quality ("q") IEC 61850 data attribute.

@@ -351,43 +351,43 @@ Dbpos_toMmsValue(MmsValue* mmsValue, Dbpos dbpos);
 
 typedef union {
     uint8_t val[8];
-} Timestamp;
+} I6_Timestamp;
 
-Timestamp*
+I6_Timestamp*
 Timestamp_create(void);
 
 void
-Timestamp_destroy(Timestamp* self);
+Timestamp_destroy(I6_Timestamp* self);
 
 void
-Timestamp_clearFlags(Timestamp* self);
+Timestamp_clearFlags(I6_Timestamp* self);
 
 uint32_t
-Timestamp_getTimeInSeconds(Timestamp* self);
+Timestamp_getTimeInSeconds(I6_Timestamp* self);
 
 uint64_t
-Timestamp_getTimeInMs(Timestamp* self);
+Timestamp_getTimeInMs(I6_Timestamp* self);
 
 bool
-Timestamp_isLeapSecondKnown(Timestamp* self);
+Timestamp_isLeapSecondKnown(I6_Timestamp* self);
 
 void
-Timestamp_setLeapSecondKnown(Timestamp* self, bool value);
+Timestamp_setLeapSecondKnown(I6_Timestamp* self, bool value);
 
 bool
-Timestamp_hasClockFailure(Timestamp* self);
+Timestamp_hasClockFailure(I6_Timestamp* self);
 
 void
-Timestamp_setClockFailure(Timestamp* self, bool value);
+Timestamp_setClockFailure(I6_Timestamp* self, bool value);
 
 bool
-Timestamp_isClockNotSynchronized(Timestamp* self);
+Timestamp_isClockNotSynchronized(I6_Timestamp* self);
 
 void
-Timestamp_setClockNotSynchronized(Timestamp* self, bool value);
+Timestamp_setClockNotSynchronized(I6_Timestamp* self, bool value);
 
 int
-Timestamp_getSubsecondPrecision(Timestamp* self);
+Timestamp_getSubsecondPrecision(I6_Timestamp* self);
 
 /**
  * \brief Set the subsecond precision value of the time stamp
@@ -395,16 +395,16 @@ Timestamp_getSubsecondPrecision(Timestamp* self);
  * \param subsecondPrecision the number of significant bits of the fractionOfSecond part of the time stamp
  */
 void
-Timestamp_setSubsecondPrecision(Timestamp* self, int subsecondPrecision);
+Timestamp_setSubsecondPrecision(I6_Timestamp* self, int subsecondPrecision);
 
 void
-Timestamp_setTimeInSeconds(Timestamp* self, uint32_t secondsSinceEpoch);
+Timestamp_setTimeInSeconds(I6_Timestamp* self, uint32_t secondsSinceEpoch);
 
 void
-Timestamp_setTimeInMilliseconds(Timestamp* self, uint64_t millisSinceEpoch);
+Timestamp_setTimeInMilliseconds(I6_Timestamp* self, uint64_t millisSinceEpoch);
 
 void
-Timestamp_setByMmsUtcTime(Timestamp* self, MmsValue* mmsValue);
+Timestamp_setByMmsUtcTime(I6_Timestamp* self, MmsValue* mmsValue);
 
 /**
  * \brief Set an MmsValue instance of type UTCTime to the timestamp value
@@ -413,7 +413,7 @@ Timestamp_setByMmsUtcTime(Timestamp* self, MmsValue* mmsValue);
  * \param mmsValue the mmsValue instance, if NULL a new instance will be created
  */
 MmsValue*
-Timestamp_toMmsValue(Timestamp* self, MmsValue* mmsValue);
+Timestamp_toMmsValue(I6_Timestamp* self, MmsValue* mmsValue);
 
 /**
  * \brief Get the version of the library as string

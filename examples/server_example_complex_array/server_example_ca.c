@@ -26,7 +26,7 @@ sigint_handler(int signalId)
 }
 
 static void
-updateCMVArrayElement(MmsValue* cval, int index, float magnitude, float angle, Quality quality, Timestamp timestamp)
+updateCMVArrayElement(MmsValue* cval, int index, float magnitude, float angle, Quality quality, I6_Timestamp timestamp)
 {
     MmsValue* cmv = MmsValue_getElement(cval, index);
 
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
     float angle = 0.01f;
 
     Quality quality = QUALITY_VALIDITY_GOOD;
-    Timestamp timestamp;
+    I6_Timestamp timestamp;
 
     Timestamp_setTimeInMilliseconds(&timestamp, Hal_getTimeInMs());
 

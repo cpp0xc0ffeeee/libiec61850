@@ -1229,9 +1229,9 @@ IedConnection_readUnsigned32Value(IedConnection self, IedClientError* error, con
  *
  * \return the timestamp value
  */
-Timestamp*
+I6_Timestamp*
 IedConnection_readTimestampValue(IedConnection self, IedClientError* error, const char* objectReference, FunctionalConstraint fc,
-        Timestamp* timeStamp);
+        I6_Timestamp* timeStamp);
 
 /**
  * \brief read a functional constrained data attribute (FCDA) of type Quality

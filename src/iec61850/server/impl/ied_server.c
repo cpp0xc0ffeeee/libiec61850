@@ -1137,7 +1137,7 @@ IedServer_updateUTCTimeAttributeValue(IedServer self, DataAttribute* dataAttribu
 }
 
 void
-IedServer_updateTimestampAttributeValue(IedServer self, DataAttribute* dataAttribute, Timestamp* timestamp)
+IedServer_updateTimestampAttributeValue(IedServer self, DataAttribute* dataAttribute, I6_Timestamp* timestamp)
 {
     assert(MmsValue_getType(dataAttribute->mmsValue) == MMS_UTC_TIME);
     assert(dataAttribute != NULL);

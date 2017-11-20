@@ -826,19 +826,19 @@ IedConnection_readInt64Value(IedConnection self, IedClientError* error, const ch
     return retVal;
 }
 
-Timestamp*
+I6_Timestamp*
 IedConnection_readTimestampValue(IedConnection self, IedClientError* error, const char* objectReference, FunctionalConstraint fc,
-        Timestamp* timeStamp)
+        I6_Timestamp* timeStamp)
 {
     MmsValue* value = IedConnection_readObject(self, error, objectReference, fc);
 
-    Timestamp* retVal = timeStamp;
+    I6_Timestamp* retVal = timeStamp;
 
     if (value != NULL) {
         if (MmsValue_getType(value) == MMS_UTC_TIME) {
 
             if (retVal == NULL)
-                retVal = (Timestamp*) GLOBAL_MALLOC(sizeof(Timestamp));
+                retVal = (I6_Timestamp*) GLOBAL_MALLOC(sizeof(I6_Timestamp));
 
             memcpy(retVal->val, value->value.utcTime, 8);
         }

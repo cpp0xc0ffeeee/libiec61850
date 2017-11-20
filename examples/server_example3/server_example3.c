@@ -135,7 +135,7 @@ main(int argc, char** argv)
 
         IedServer_lockDataModel(iedServer);
 
-        Timestamp iecTimestamp;
+        I6_Timestamp iecTimestamp;
 
         Timestamp_clearFlags(&iecTimestamp);
         Timestamp_setTimeInMilliseconds(&iecTimestamp, timestamp);

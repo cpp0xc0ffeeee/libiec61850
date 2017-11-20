@@ -224,29 +224,29 @@ FunctionalConstraint_fromString(const char* fcString)
     return IEC61850_FC_NONE;
 }
 
-Timestamp*
+I6_Timestamp*
 Timestamp_create()
 {
-    Timestamp* self = (Timestamp*) GLOBAL_CALLOC(1, sizeof(Timestamp));
+    I6_Timestamp* self = (I6_Timestamp*) GLOBAL_CALLOC(1, sizeof(I6_Timestamp));
 
     return self;
 }
 
 void
-Timestamp_destroy(Timestamp* self)
+Timestamp_destroy(I6_Timestamp* self)
 {
     if (self != NULL)
         GLOBAL_FREEMEM(self);
 }
 
 void
-Timestamp_clearFlags(Timestamp* self)
+Timestamp_clearFlags(I6_Timestamp* self)
 {
     self->val[7] = 0;
 }
 
 bool
-Timestamp_isLeapSecondKnown(Timestamp* self)
+Timestamp_isLeapSecondKnown(I6_Timestamp* self)
 {
     if (self->val[7] & 0x80)
         return true;
@@ -255,7 +255,7 @@ Timestamp_isLeapSecondKnown(Timestamp* self)
 }
 
 void
-Timestamp_setLeapSecondKnown(Timestamp* self, bool value)
+Timestamp_setLeapSecondKnown(I6_Timestamp* self, bool value)
 {
     if (value)
         self->val[7] |= 0x80;
@@ -264,7 +264,7 @@ Timestamp_setLeapSecondKnown(Timestamp* self, bool value)
 }
 
 bool
-Timestamp_hasClockFailure(Timestamp* self)
+Timestamp_hasClockFailure(I6_Timestamp* self)
 {
     if (self->val[7] & 0x40)
         return true;
@@ -273,7 +273,7 @@ Timestamp_hasClockFailure(Timestamp* self)
 }
 
 void
-Timestamp_setClockFailure(Timestamp* self, bool value)
+Timestamp_setClockFailure(I6_Timestamp* self, bool value)
 {
     if (value)
         self->val[7] |= 0x40;
@@ -282,7 +282,7 @@ Timestamp_setClockFailure(Timestamp* self, bool value)
 }
 
 bool
-Timestamp_isClockNotSynchronized(Timestamp* self)
+Timestamp_isClockNotSynchronized(I6_Timestamp* self)
 {
     if (self->val[7] & 0x20)
         return true;
@@ -291,7 +291,7 @@ Timestamp_isClockNotSynchronized(Timestamp* self)
 }
 
 void
-Timestamp_setClockNotSynchronized(Timestamp* self, bool value)
+Timestamp_setClockNotSynchronized(I6_Timestamp* self, bool value)
 {
     if (value)
         self->val[7] |= 0x20;
@@ -300,13 +300,13 @@ Timestamp_setClockNotSynchronized(Timestamp* self, bool value)
 }
 
 int
-Timestamp_getSubsecondPrecision(Timestamp* self)
+Timestamp_getSubsecondPrecision(I6_Timestamp* self)
 {
     return (int) (self->val[7] & 0x1f);
 }
 
 void
-Timestamp_setSubsecondPrecision(Timestamp* self, int subsecondPrecision)
+Timestamp_setSubsecondPrecision(I6_Timestamp* self, int subsecondPrecision)
 {
     uint8_t ssp = subsecondPrecision & 0x1f;
 
@@ -315,7 +315,7 @@ Timestamp_setSubsecondPrecision(Timestamp* self, int subsecondPrecision)
 }
 
 void
-Timestamp_setTimeInSeconds(Timestamp* self, uint32_t secondsSinceEpoch)
+Timestamp_setTimeInSeconds(I6_Timestamp* self, uint32_t secondsSinceEpoch)
 {
     uint8_t* timeArray = (uint8_t*) &secondsSinceEpoch;
     uint8_t* valueArray =  self->val;
@@ -334,7 +334,7 @@ Timestamp_setTimeInSeconds(Timestamp* self, uint32_t secondsSinceEpoch)
 }
 
 void
-Timestamp_setTimeInMilliseconds(Timestamp* self, uint64_t millisSinceEpoch)
+Timestamp_setTimeInMilliseconds(I6_Timestamp* self, uint64_t millisSinceEpoch)
 {
     uint32_t timeval32 = (uint32_t) (millisSinceEpoch / 1000LL);
 
@@ -359,7 +359,7 @@ Timestamp_setTimeInMilliseconds(Timestamp* self, uint64_t millisSinceEpoch)
 }
 
 uint32_t
-Timestamp_getTimeInSeconds(Timestamp* self)
+Timestamp_getTimeInSeconds(I6_Timestamp* self)
 {
     uint32_t timeval32;
     uint8_t* valueArray = self->val;
@@ -374,7 +374,7 @@ Timestamp_getTimeInSeconds(Timestamp* self)
 }
 
 uint64_t
-Timestamp_getTimeInMs(Timestamp* self)
+Timestamp_getTimeInMs(I6_Timestamp* self)
 {
     uint32_t timeval32;
     uint8_t* valueArray = self->val;
@@ -399,14 +399,14 @@ Timestamp_getTimeInMs(Timestamp* self)
 }
 
 void
-Timestamp_setByMmsUtcTime(Timestamp* self, MmsValue* mmsValue)
+Timestamp_setByMmsUtcTime(I6_Timestamp* self, MmsValue* mmsValue)
 {
     if (MmsValue_getType(mmsValue) == MMS_UTC_TIME)
         memcpy(self->val, mmsValue->value.utcTime, 8);
 }
 
 MmsValue*
-Timestamp_toMmsValue(Timestamp* self, MmsValue* mmsValue)
+Timestamp_toMmsValue(I6_Timestamp* self, MmsValue* mmsValue)
 {
     MmsValue* convertedValue = mmsValue;
 

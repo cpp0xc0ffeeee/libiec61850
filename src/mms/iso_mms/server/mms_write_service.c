@@ -481,7 +481,7 @@ mmsServer_handleWriteRequest(
 
 	if (rval.code != RC_OK) {
 	    mmsMsg_createMmsRejectPdu(&invokeId, MMS_ERROR_REJECT_INVALID_PDU, response);
-	    return;
+	    goto exit_function;
 	}
 
 	WriteRequest_t* writeRequest = &(mmsPdu->choice.confirmedRequestPdu.confirmedServiceRequest.choice.write);
@@ -657,7 +657,7 @@ mmsServer_handleWriteRequest(
             }
 
             /* Check for correct type */
-            if (MmsValue_getType(value) != MmsVariableSpecification_getType(variable)) {
+            if (MmsVariableSpecification_isValueOfType(variable, value) == false) {
                 accessResults[i] = DATA_ACCESS_ERROR_TYPE_INCONSISTENT;
                 goto end_of_main_loop;
             }
